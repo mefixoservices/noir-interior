@@ -1,11 +1,185 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>NOIR INTERIOR</title>
+<meta charset="UTF-8">
+<title>NOIR INTERIOR</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#ffffff;
+  color:#111;
+  font-family:'Inter',sans-serif;
+}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:0 10%;
+}
+
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:72px;
+  margin:0;
+  letter-spacing:1px;
+}
+
+.hero p{
+  margin-top:20px;
+  font-size:14px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:#666;
+}
+
+.hero a{
+  margin-top:50px;
+  display:inline-block;
+  text-decoration:none;
+  color:#111;
+  border-bottom:1px solid #111;
+  width:fit-content;
+  font-size:14px;
+  letter-spacing:2px;
+}
+
+/* IMAGE SECTIONS */
+.section-image{
+  padding:120px 10%;
+}
+
+.section-image img{
+  width:100%;
+  height:80vh;
+  object-fit:cover;
+}
+
+/* TEXT BLOCK */
+.text-block{
+  max-width:600px;
+  padding:120px 10%;
+}
+
+.text-block h2{
+  font-family:'Playfair Display',serif;
+  font-size:40px;
+  margin-bottom:30px;
+}
+
+.text-block p{
+  line-height:1.8;
+  color:#444;
+}
+
+/* SERVICES */
+.services{
+  padding:120px 10%;
+}
+
+.services h2{
+  font-family:'Playfair Display',serif;
+  font-size:40px;
+  margin-bottom:40px;
+}
+
+.service-list{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+  font-size:18px;
+}
+
+/* CTA */
+.cta{
+  padding:140px 10%;
+}
+
+.cta h2{
+  font-family:'Playfair Display',serif;
+  font-size:48px;
+  margin-bottom:30px;
+}
+
+.cta a{
+  text-decoration:none;
+  font-size:14px;
+  letter-spacing:2px;
+  border-bottom:1px solid #111;
+  color:#111;
+}
+
+/* FOOTER */
+footer{
+  padding:40px;
+  text-align:center;
+  font-size:12px;
+  letter-spacing:1px;
+  color:#777;
+}
+
+@media(max-width:768px){
+  .hero h1{font-size:42px}
+  .section-image img{height:50vh}
+}
+</style>
 </head>
-<body style="font-family:Arial; padding:60px;">
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
   <h1>NOIR INTERIOR</h1>
-  <p>Website under development.</p>
+  <p>LUXURY IN EVERY SHADE</p>
+  <a href="#">BOOK</a>
+</section>
+
+<!-- IMAGE -->
+<section class="section-image">
+  <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Interior">
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="text-block">
+  <h2>Design Philosophy</h2>
+  <p>
+    We create refined interior spaces that balance form,
+    function and atmosphere. Our approach is rooted in
+    simplicity, precision and timeless design.
+  </p>
+</section>
+
+<!-- IMAGE -->
+<section class="section-image">
+  <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0" alt="Interior">
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <h2>Services</h2>
+  <div class="service-list">
+    <div>Residential Interiors</div>
+    <div>Commercial Spaces</div>
+    <div>Turnkey Projects</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>Begin Your Space</h2>
+  <a href="#">BOOK</a>
+</section>
+
+<footer>
+  © 2026 NOIR INTERIOR
+</footer>
+
 </body>
 </html>
