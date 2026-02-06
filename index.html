@@ -5,7 +5,12 @@
 <title>NOIR INTERIOR</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- FONTS -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- GSAP (ANIMATION ENGINE) -->
+<script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
 
 <style>
 *{box-sizing:border-box}
@@ -24,14 +29,11 @@ body{
   justify-content:center;
   padding:0 10%;
 }
-
 .hero h1{
   font-family:'Playfair Display',serif;
   font-size:72px;
   margin:0;
-  letter-spacing:1px;
 }
-
 .hero p{
   margin-top:20px;
   font-size:14px;
@@ -39,41 +41,40 @@ body{
   text-transform:uppercase;
   color:#666;
 }
-
 .hero a{
   margin-top:50px;
-  display:inline-block;
   text-decoration:none;
   color:#111;
   border-bottom:1px solid #111;
-  width:fit-content;
   font-size:14px;
   letter-spacing:2px;
+  width:fit-content;
 }
 
 /* IMAGE SECTIONS */
-.section-image{
+.image-section{
   padding:120px 10%;
+  overflow:hidden;
 }
-
-.section-image img{
+.image-section img{
   width:100%;
   height:80vh;
   object-fit:cover;
+  transform:scale(1.15);
 }
 
 /* TEXT BLOCK */
 .text-block{
-  max-width:600px;
+  max-width:620px;
   padding:120px 10%;
+  opacity:0;
+  transform:translateY(40px);
 }
-
 .text-block h2{
   font-family:'Playfair Display',serif;
   font-size:40px;
   margin-bottom:30px;
 }
-
 .text-block p{
   line-height:1.8;
   color:#444;
@@ -82,32 +83,32 @@ body{
 /* SERVICES */
 .services{
   padding:120px 10%;
+  opacity:0;
+  transform:translateY(40px);
 }
-
 .services h2{
   font-family:'Playfair Display',serif;
   font-size:40px;
   margin-bottom:40px;
 }
-
 .service-list{
   display:flex;
   flex-direction:column;
-  gap:15px;
+  gap:14px;
   font-size:18px;
 }
 
 /* CTA */
 .cta{
   padding:140px 10%;
+  opacity:0;
+  transform:translateY(40px);
 }
-
 .cta h2{
   font-family:'Playfair Display',serif;
   font-size:48px;
   margin-bottom:30px;
 }
-
 .cta a{
   text-decoration:none;
   font-size:14px;
@@ -125,9 +126,10 @@ footer{
   color:#777;
 }
 
+/* MOBILE */
 @media(max-width:768px){
   .hero h1{font-size:42px}
-  .section-image img{height:50vh}
+  .image-section img{height:50vh}
 }
 </style>
 </head>
@@ -142,23 +144,23 @@ footer{
 </section>
 
 <!-- IMAGE -->
-<section class="section-image">
-  <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Interior">
+<section class="image-section">
+  <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
 </section>
 
 <!-- PHILOSOPHY -->
 <section class="text-block">
   <h2>Design Philosophy</h2>
   <p>
-    We create refined interior spaces that balance form,
-    function and atmosphere. Our approach is rooted in
-    simplicity, precision and timeless design.
+    We create refined interior spaces defined by restraint,
+    balance and atmosphere. Each project is approached with
+    clarity, precision and timeless intent.
   </p>
 </section>
 
 <!-- IMAGE -->
-<section class="section-image">
-  <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0" alt="Interior">
+<section class="image-section">
+  <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0">
 </section>
 
 <!-- SERVICES -->
@@ -180,6 +182,42 @@ footer{
 <footer>
   © 2026 NOIR INTERIOR
 </footer>
+
+<!-- GSAP ANIMATIONS -->
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// Image zoom-out animation
+gsap.utils.toArray(".image-section img").forEach(img=>{
+  gsap.fromTo(img,
+    {scale:1.15},
+    {
+      scale:1,
+      ease:"power2.out",
+      scrollTrigger:{
+        trigger:img,
+        start:"top 80%",
+        end:"bottom 60%",
+        scrub:true
+      }
+    }
+  );
+});
+
+// Text reveal animations
+gsap.utils.toArray(".text-block, .services, .cta").forEach(section=>{
+  gsap.to(section,{
+    opacity:1,
+    y:0,
+    duration:1.4,
+    ease:"power3.out",
+    scrollTrigger:{
+      trigger:section,
+      start:"top 80%"
+    }
+  });
+});
+</script>
 
 </body>
 </html>
