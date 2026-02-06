@@ -12,7 +12,7 @@
 <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
 <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
 
-<!-- LENIS (APPLE-LIKE SCROLL) -->
+<!-- LENIS -->
 <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
 
 <style>
@@ -23,7 +23,6 @@ body{
   color:#111;
   font-family:'Inter',sans-serif;
 }
-
 section{
   padding:120px 10%;
 }
@@ -57,45 +56,41 @@ section{
   width:fit-content;
 }
 
-/* IMAGE SECTIONS */
-.image-section{
+/* IMAGE */
+.full-image{
   padding:0;
   overflow:hidden;
 }
-.image-section img{
+.full-image img{
   width:100%;
   height:85vh;
   object-fit:cover;
   transform:scale(1.15);
 }
 
-/* TEXT BLOCK */
-.text-block{
-  max-width:650px;
+/* TEXT */
+.reveal{
   opacity:0;
   transform:translateY(40px);
 }
-.text-block h2{
+.reveal h2{
   font-family:'Playfair Display',serif;
   font-size:42px;
   margin-bottom:30px;
 }
-.text-block p{
+.reveal p{
+  max-width:700px;
   line-height:1.9;
   color:#444;
 }
 
 /* SERVICES */
-.services{
-  opacity:0;
-  transform:translateY(40px);
-}
 .service{
-  margin-bottom:100px;
+  margin-bottom:140px;
 }
 .service h3{
   font-family:'Playfair Display',serif;
-  font-size:36px;
+  font-size:38px;
   margin-bottom:20px;
 }
 .service p{
@@ -104,21 +99,20 @@ section{
   color:#444;
 }
 
-/* PROCESS */
-.process{
-  opacity:0;
-  transform:translateY(40px);
+/* PROJECTS */
+.projects{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:120px;
 }
-.process p{
-  max-width:700px;
-  line-height:1.9;
+.projects img{
+  width:100%;
+  height:75vh;
+  object-fit:cover;
+  transform:scale(1.15);
 }
 
 /* CTA */
-.cta{
-  opacity:0;
-  transform:translateY(40px);
-}
 .cta h2{
   font-family:'Playfair Display',serif;
   font-size:48px;
@@ -144,7 +138,7 @@ footer{
 /* MOBILE */
 @media(max-width:768px){
   .hero h1{font-size:42px}
-  .image-section img{height:55vh}
+  .full-image img,.projects img{height:55vh}
 }
 </style>
 </head>
@@ -158,65 +152,57 @@ footer{
   <a href="#">BOOK</a>
 </section>
 
-<!-- IMAGE -->
-<section class="image-section">
+<!-- INTRO IMAGE -->
+<section class="full-image">
   <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
 </section>
 
 <!-- PHILOSOPHY -->
-<section class="text-block">
+<section class="reveal">
   <h2>Design Philosophy</h2>
   <p>
-    NOIR INTERIOR is a luxury interior design studio focused on creating
-    timeless, balanced and deeply refined spaces. We believe true luxury
-    lies in restraint, proportion and atmosphere rather than excess.
+    NOIR INTERIOR creates timeless interior environments rooted in clarity,
+    proportion and atmosphere. Our approach values restraint over excess
+    and detail over decoration.
   </p>
 </section>
 
-<!-- IMAGE -->
-<section class="image-section">
-  <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0">
-</section>
-
 <!-- SERVICES -->
-<section class="services">
+<section class="reveal">
   <div class="service">
     <h3>Residential Interiors</h3>
     <p>
-      Bespoke home interiors designed with clarity and intention —
-      tailored to individual lifestyles while maintaining a timeless aesthetic.
+      Bespoke living spaces designed with calm precision,
+      tailored to individual lifestyles and architectural context.
     </p>
   </div>
 
   <div class="service">
     <h3>Commercial Spaces</h3>
     <p>
-      Thoughtfully designed workspaces, studios and retail environments
-      that balance function, brand identity and refined visual language.
+      Thoughtful workspaces and retail interiors balancing function,
+      brand identity and refined visual language.
     </p>
   </div>
 
   <div class="service">
     <h3>Turnkey Projects</h3>
     <p>
-      Complete interior solutions from concept to execution,
-      ensuring consistency, quality and precision at every stage.
+      Complete interior execution from concept to completion,
+      ensuring consistency and quality at every stage.
     </p>
   </div>
 </section>
 
-<!-- PROCESS -->
-<section class="process">
-  <h2>Our Process</h2>
-  <p>
-    Every project begins with understanding — followed by design,
-    detailing, execution and final delivery. We work with a calm,
-    structured approach to ensure clarity and trust throughout the journey.
-  </p>
+<!-- PROJECTS -->
+<section class="projects">
+  <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0">
+  <img src="https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a">
+  <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c">
 </section>
 
 <!-- CTA -->
-<section class="cta">
+<section class="reveal cta">
   <h2>Begin Your Space</h2>
   <a href="#">BOOK</a>
 </section>
@@ -225,47 +211,27 @@ footer{
   © 2026 NOIR INTERIOR
 </footer>
 
-<!-- SMOOTH SCROLL + ANIMATIONS -->
+<!-- SMOOTH SCROLL + MOTION -->
 <script>
-const lenis = new Lenis({
-  duration:1.3,
-  easing:(t)=>Math.min(1,1.001-Math.pow(2,-10*t))
-});
-function raf(time){
-  lenis.raf(time);
-  requestAnimationFrame(raf);
-}
+const lenis=new Lenis({duration:1.3,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t))});
+function raf(t){lenis.raf(t);requestAnimationFrame(raf)}
 requestAnimationFrame(raf);
-lenis.on('scroll', ScrollTrigger.update);
-gsap.ticker.add((time)=>lenis.raf(time*1000));
+lenis.on('scroll',ScrollTrigger.update);
+gsap.ticker.add(t=>lenis.raf(t*1000));
 gsap.ticker.lagSmoothing(0);
-
 gsap.registerPlugin(ScrollTrigger);
 
-// Image zoom
-gsap.utils.toArray(".image-section img").forEach(img=>{
-  gsap.fromTo(img,{scale:1.15},{
-    scale:1,
-    scrollTrigger:{
-      trigger:img,
-      start:"top 80%",
-      end:"bottom 60%",
-      scrub:true
-    }
+// image zoom
+gsap.utils.toArray("img").forEach(img=>{
+  gsap.fromTo(img,{scale:1.15},{scale:1,
+    scrollTrigger:{trigger:img,start:"top 80%",end:"bottom 60%",scrub:true}
   });
 });
 
-// Text reveal
-gsap.utils.toArray(".text-block, .services, .process, .cta").forEach(sec=>{
-  gsap.to(sec,{
-    opacity:1,
-    y:0,
-    duration:1.6,
-    ease:"power3.out",
-    scrollTrigger:{
-      trigger:sec,
-      start:"top 80%"
-    }
+// text reveal
+gsap.utils.toArray(".reveal").forEach(el=>{
+  gsap.to(el,{opacity:1,y:0,duration:1.6,ease:"power3.out",
+    scrollTrigger:{trigger:el,start:"top 80%"}
   });
 });
 </script>
